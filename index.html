@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular Evaluare Estetică</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .checkbox-group {
+            margin-top: 5px;
+        }
+        .checkbox-label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .btn-submit {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Formular de Evaluare pentru Intervenții Estetice</h1>
+        <form id="formularEstetica" method="POST" action="https://n8n.yourdomain.com/webhook/formular-estetica">
+            
+            <div class="form-group">
+                <label for="scop_interventie" class="required">Care este scopul intervenției dorite?</label>
+                <textarea id="scop_interventie" name="scop_interventie" required placeholder="Vă rugăm să descrieți în detaliu ce doriți să îmbunătățiți"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="zona_modificata" class="required">Ce zonă doriți să fie modificată/tratată?</label>
+                <textarea id="zona_modificata" name="zona_modificata" required placeholder="Ex: nas, sâni, abdomen, față, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="interventii_anterioare">Ați avut intervenții estetice anterioare? Dacă da, vă rugăm să le descrieți</label>
+                <textarea id="interventii_anterioare" name="interventii_anterioare" placeholder="Descrieți tipul intervenției și anul aproximativ"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="afectiuni_cronice">Suferiți de afecțiuni cronice? Dacă da, vă rugăm să le menționați</label>
+                <textarea id="afectiuni_cronice" name="afectiuni_cronice" placeholder="Ex: diabet, hipertensiune, astm, etc."></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Sunteți fumător/fumătoare?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="fumator" value="1"> Da, fumez
+                </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Luați medicamente în mod regulat?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="medicatie_regulata" value="1"> Da, iau medicamente regulat
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label for="alergii">Aveți alergii cunoscute? (la medicamente, anestezice, materiale, etc.)</label>
+                <textarea id="alergii" name="alergii" placeholder="Menționați orice alergii cunoscute"></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Ați avut internări în spital în ultimele 6 luni?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="internari_recente" value="1"> Da, am fost internat/ă recent
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label for="nivel_informare" class="required">Cât de informat(ă) vă considerați despre procedura dorită?</label>
+                <select id="nivel_informare" name="nivel_informare" required>
+                    <option value="">Vă rugăm să selectați</option>
+                    <option value="Scăzut">Scăzut - Nu știu multe detalii</option>
+                    <option value="Mediu">Mediu - Am citit câteva informații</option>
+                    <option value="Ridicat">Ridicat - Sunt bine documentat(ă)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="asteptari" class="required">Care sunt așteptările dumneavoastră de la această intervenție?</label>
+                <textarea id="asteptari" name="asteptari" required placeholder="Descrieți rezultatele pe care le doriți și ce impact credeți că va avea asupra vieții dumneavoastră"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="urgenta_interventie" class="required">Cât de urgent doriți să efectuați această intervenție?</label>
+                <select id="urgenta_interventie" name="urgenta_interventie" required>
+                    <option value="">Vă rugăm să selectați</option>
+                    <option value="Urgent">Urgent - În următoarele săptămâni</option>
+                    <option value="Moderat">Moderat - În următoarele 1-3 luni</option>
+                    <option value="Non-urgent">Non-urgent - Nu am o dată specifică în minte</option>
+                </select>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Sunteți pregătit(ă) financiar pentru această intervenție?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="pregatire_financiara" value="1"> Da, sunt pregătit(ă) financiar
+                </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Ați discutat anterior cu alți specialiști despre această intervenție?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="discutii_anterioare" value="1"> Da, am discutat cu alți specialiști
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label for="timp_recuperare" class="required">Ce perioadă de recuperare ați putea aloca?</label>
+                <select id="timp_recuperare" name="timp_recuperare" required>
+                    <option value="">Vă rugăm să selectați</option>
+                    <option value="câteva zile">Câteva zile (1-7 zile)</option>
+                    <option value="1-2 săptămâni">1-2 săptămâni</option>
+                    <option value="2-4 săptămâni">2-4 săptămâni</option>
+                    <option value="1-2 luni">1-2 luni</option>
+                    <option value="peste 2 luni">Peste 2 luni</option>
+                </select>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>Sunteți deschis(ă) la recomandările specialistului, chiar dacă diferă de ideea inițială?</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="deschidere_recomandari" value="1"> Da, sunt deschis(ă) la recomandări
+                </label>
+            </div>
+            
+            <button type="submit" class="btn-submit">Trimite Formularul</button>
+        </form>
+    </div>
+
+    <script>
+        // Script pentru validare și manipulare formular
+        document.getElementById('formularEstetica').addEventListener('submit', function(e) {
+            // Opțional: adăugați validare suplimentară aici dacă este necesar
+            
+            // Pentru integrare cu n8n, puteți folosi fetch pentru a trimite datele prin AJAX
+            // Decomentați codul de mai jos dacă preferați abordarea AJAX în loc de POST tradițional
+            /*
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const jsonData = {};
+            
+            formData.forEach((value, key) => {
+                // Pentru checkbox-uri, verificăm dacă sunt bifate
+                if (key === 'fumator' || key === 'medicatie_regulata' || key === 'internari_recente' || 
+                    key === 'pregatire_financiara' || key === 'discutii_anterioare' || key === 'deschidere_recomandari') {
+                    jsonData[key] = value === '1' ? 1 : 0;
+                } else {
+                    jsonData[key] = value;
+                }
+            });
+            
+            fetch('https://n8n.yourdomain.com/webhook/formular-estetica', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Formularul a fost trimis cu succes!');
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Eroare:', error);
+                alert('A apărut o eroare la trimiterea formularului. Vă rugăm să încercați din nou.');
+            });
+            */
+        });
+    </script>
+</body>
+</html>
+
